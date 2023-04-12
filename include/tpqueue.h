@@ -6,7 +6,7 @@
 
 struct SYM {
   char ch;
-  int prior;
+  int priority;
 };
 
 template<typename T, int size>
@@ -44,7 +44,7 @@ class TPQueue {
     assert(count > 0);
     return arr[begin].ch;
   }
-  
+
   const T& pop() {
     assert(count > 0);
     count--;
