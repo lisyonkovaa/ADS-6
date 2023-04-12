@@ -29,15 +29,16 @@ class TPQueue {
   void push(const T& value) {
     assert(count < sizeQueue);
 
-    int prior = value.prior;
-    int cur = end;
-    while (cur != begin && prior > arr[(cur - 1) % size].prior) {
-        arr[cur] = arr[(cur - 1) % size];
-        cur = (cur - 1) % size;
-    }
-    arr[cur] = value;
-    end = (end + 1) % sizeQueue;
     count++;
+    int b = begin, e = end;
+    while (arr[b].prior >= value.prior && b != end)
+    b = (b + 1) % size;
+    while (e != b) {
+      arr[e] = arr[(e - 1) % size];
+      e = (size + e - 1) % size;
+    }
+    end = (end + 1) % size;
+    arr[b] = value;
   }
 
   char get() {
