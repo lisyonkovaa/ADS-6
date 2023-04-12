@@ -6,7 +6,7 @@
 
 struct SYM {
   char ch;
-  int priority;
+  int prior;
 };
 
 template<typename T, int size>
@@ -29,9 +29,9 @@ class TPQueue {
   void push(const T& value) {
     assert(count < sizeQueue);
 
-    int priority = value.prior;
+    int prior = value.prior;
     int cur = end;
-    while (cur != begin && priority > arr[(cur - 1) % size].priority) {
+    while (cur != begin && prior > arr[(cur - 1) % size].prior) {
         arr[cur] = arr[(cur - 1) % size];
         cur = (cur - 1) % size;
     }
